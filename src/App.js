@@ -15,7 +15,7 @@ import Profile from "./components/profile.component";
 
 import EditTutorial from "./components/edittutorial.component";
 
-function App () {
+function App() {
   // constructor(props) {
   //   super(props);
   //   this.logOut = this.logOut.bind(this);
@@ -37,7 +37,7 @@ function App () {
   //       showAdminBoard: user.roles.includes("ROLE_ADMIN"),
   //     });
   //   }
-    
+
   //   EventBus.on("logout", () => {
   //     this.logOut();
   //   });
@@ -59,40 +59,40 @@ function App () {
   // render() {
   //   const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
-    return (
-      <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            Brillio
-          </Link>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/addtutorial"} className="nav-link">
-                Add Tutorial
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/edittutorial"} className="nav-link">
-                Edit Tutorial
-              </Link>
-            </li>
+  return (
+    <div>
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <Link to={"/"} className="navbar-brand">
+          Brillio
+        </Link>
+        <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to={"/home"} className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/addtutorial"} className="nav-link">
+              Add Tutorial
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/edittutorial"} className="nav-link">
+              Edit Tutorial
+            </Link>
+          </li>
 
-            {/* {currentUser && (
+          {/* {currentUser && (
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
                   User
                 </Link>
               </li>
             )} */}
-          </div>
+        </div>
 
-          {/* {currentUser ? ( */}
-            {/* <div className="navbar-nav ml-auto">
+        {/* {currentUser ? ( */}
+        {/* <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   {currentUser.username}
@@ -104,37 +104,37 @@ function App () {
                 </a>
               </li>
             </div> */}
-          {/* ) : ( */}
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
+        {/* ) : ( */}
+        <div className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to={"/login"} className="nav-link">
+              Login
+            </Link>
+          </li>
 
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          {/* )} */}
-        </nav>
-
-        <div className="container mt-3">
-          <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/addtutorial" component={AddTutorial} ></Route>
-            <Route exact path="/edittutorial" component={EditTutorial} ></Route>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-          </Switch>
+          <li className="nav-item">
+            <Link to={"/register"} className="nav-link">
+              Sign Up
+            </Link>
+          </li>
         </div>
+        {/* )} */}
+      </nav>
 
-        { /*<AuthVerify logOut={this.logOut}/> */ }
+      <div className="container mt-3">
+        <Switch>
+          <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path="/addtutorial" component={AddTutorial}></Route>
+          <Route exact path="/edittutorial" component={EditTutorial}></Route>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/profile" component={Profile} />
+        </Switch>
       </div>
-    );
-  }
+
+      {/*<AuthVerify logOut={this.logOut}/> */}
+    </div>
+  );
+}
 
 export default App;
