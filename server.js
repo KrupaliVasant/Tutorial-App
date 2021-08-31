@@ -47,8 +47,24 @@ app.post("/tutorial", urlencodedParser, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+app.get("/tutorial", (req, res) => {
+  Tutorial.find().then((data) => {
+    res.end(JSON.stringify(data));
+  });
+});
+
+app.get("/tutorial/:id", (req, res) => {
+  const tutorialId = req.params.id;
+  console.log("tutorialId", tutorialId);
+  Tutorial.findById(tutorialId)
+    .then((data) => {
+      res.end(JSON.stringify(data));
+    })
+    .catch((err) => console.log(err));
+});
+
 // update tutorial
-app.put("/tutorial/:id", (req, res) => {
+app.put("/tutorial/:id", urlencodedParser, (req, res) => {
   const tutorialId = req.params.id;
   Tutorial.findByIdAndUpdate(
     { _id: tutorialId },

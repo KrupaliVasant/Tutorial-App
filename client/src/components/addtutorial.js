@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 function AddTutorial(props) {
   const url = "http://localhost:8080/tutorial";
-  const [tId, setTid] = useState();
+  // const [tId, setTid] = useState();
   const [tName, setTname] = useState();
   const [tDesc, setTdesc] = useState();
   const [tStatus, setTstatus] = useState();
@@ -20,7 +20,7 @@ function AddTutorial(props) {
       .post(
         url,
         {
-          tId: tId,
+          // tId: tId,
           tName: tName,
           tDesc: tDesc,
           tStatus: tStatus,
@@ -34,11 +34,11 @@ function AddTutorial(props) {
 
   const handleChange = (e) => {
     e.preventDefault();
-    const tid = document.getElementById("tutorial_id").value;
+    // const tid = document.getElementById("tutorial_id").value;
     const tname = document.getElementById("tutorial_name").value;
     const tdesc = document.getElementById("tutorial_desc").value;
     const tstatus = document.getElementById("tutorial_status").value;
-    setTid(tid);
+    // setTid(tid);
     setTname(tname);
     setTdesc(tdesc);
     setTstatus(tstatus);
@@ -50,7 +50,7 @@ function AddTutorial(props) {
         <div className="card card-container">
           <h3 className="text-center">Add Tutorial</h3>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="tutorial_id">Tutorial Id</label>
               <input
                 type="text"
@@ -61,7 +61,7 @@ function AddTutorial(props) {
                 onChange={handleChange}
                 placeholder="Id"
               />
-            </div>
+            </div> */}
             <div className="form-group">
               <label htmlFor="tutorial_name">Tutorial Name</label>
               <input

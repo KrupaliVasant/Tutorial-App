@@ -8,17 +8,17 @@ function EditTutorial(props) {
   const [tName, setTname] = useState();
   const [tDesc, setTdesc] = useState();
   const [tStatus, setTstatus] = useState();
-  const params = useParams();
-  console.log(params.id);
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
   };
 
   const loadData = () => {
-    let id = params.id;
-    axios.get(`url/${id}`).then((res) => {
+    let id = props.match.params.id;
+    console.log(id);
+    axios.get(url + "/" + id).then((res) => {
       let tutorial = res.data;
+      console.log(tutorial);
       setTid(tutorial.id);
       setTname(tutorial.tName);
       setTdesc(tutorial.tDesc);
@@ -32,11 +32,11 @@ function EditTutorial(props) {
 
   const handleChange = (e) => {
     e.preventDefault();
-    const tid = document.getElementById("tutorial_id").value;
+    // const tid = document.getElementById("tutorial_id").value;
     const tname = document.getElementById("tutorial_name").value;
     const tdesc = document.getElementById("tutorial_desc").value;
     const tstatus = document.getElementById("tutorial_status").value;
-    setTid(tid);
+    // setTid(tid);
     setTname(tname);
     setTdesc(tdesc);
     setTstatus(tstatus);
@@ -45,10 +45,10 @@ function EditTutorial(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     let id = props.match.parama.id;
-    console.log("update clicked");
+    console.log("update clicked", id);
     axios
       .put(url + "/" + id, {
-        tId: tId,
+        // tId: tId,
         tName: tName,
         tDesc: tDesc,
         tStatus: tStatus,
@@ -64,7 +64,7 @@ function EditTutorial(props) {
         <div className="card card-container">
           <h3 className="text-center">Edit Tutorial</h3>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="tutorial_id">Tutorial Id</label>
               <input
                 type="text"
@@ -76,7 +76,7 @@ function EditTutorial(props) {
                 placeholder="Id"
                 disabled
               />
-            </div>
+            </div> */}
             <div className="form-group">
               <label htmlFor="tutorial_name">Tutorial Name</label>
               <input
@@ -115,7 +115,7 @@ function EditTutorial(props) {
 
             <div className="form-group">
               <button type="submit" className="btn btn-primary btn-block">
-                Add
+                Update
               </button>
             </div>
           </form>
