@@ -3,7 +3,7 @@ import React, { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function EditTutorial(props) {
-  const url = "http://localhost:3000/tutorial";
+  const url = "http://localhost:8080/tutorial";
   const [tId, setTid] = useState();
   const [tName, setTname] = useState();
   const [tDesc, setTdesc] = useState();
@@ -17,8 +17,7 @@ function EditTutorial(props) {
 
   const loadData = () => {
     let id = params.id;
-    // axios.get(`url/${id}`).then((res) => {
-    axios.get(url + "/" + 1).then((res) => {
+    axios.get(`url/${id}`).then((res) => {
       let tutorial = res.data;
       setTid(tutorial.id);
       setTname(tutorial.tName);
@@ -49,6 +48,7 @@ function EditTutorial(props) {
     console.log("update clicked");
     axios
       .put(url + "/" + id, {
+        tId: tId,
         tName: tName,
         tDesc: tDesc,
         tStatus: tStatus,

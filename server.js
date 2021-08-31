@@ -42,7 +42,6 @@ app.post("/tutorial", urlencodedParser, (req, res) => {
   addTutorial
     .save(addTutorial)
     .then((data) => {
-      console.log("data===", JSON.stringify(data));
       res.end(JSON.stringify(data));
     })
     .catch((err) => console.log(err));
@@ -64,6 +63,7 @@ app.put("/tutorial/:id", (req, res) => {
   )
     .then((data) => {
       console.log("Updtaed");
+      console.log("data===", JSON.stringify(data));
       res.end(JSON.stringify(data));
     })
     .catch((err) => console.log(err));
