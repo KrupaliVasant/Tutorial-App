@@ -1,6 +1,12 @@
 import React from "react";
 import axios from "axios";
+import Modal from "react-bootstrap/Modal";
+import ModalDialog from "react-bootstrap/ModalDialog";
 
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalTitle from "react-bootstrap/ModalTitle";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalFooter from "react-bootstrap/ModalFooter";
 import "font-awesome/css/font-awesome.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +21,7 @@ class Cards extends React.Component {
     super();
     this.state = {
       id: [],
+      show: false,
       showComponent: false,
       tutorials: [],
     };
@@ -26,9 +33,15 @@ class Cards extends React.Component {
       // console.log(res.data);
     });
   }
+  handleClose = () => {
+    this.setState({ show: false });
+  };
 
-  deleteList = (t) => {
-    const tut = { id: t._id, name: t.tName };
+  handleShow = () => {
+    this.setState({ show: true });
+  };
+  deleteList = (tutorial) => {
+    const tut = { id: tutorial._id, name: tutorial.tName };
     console.log(tut);
     axios
       .delete(`http://localhost:8080/tutorial/${tut.id}`, {
@@ -36,15 +49,17 @@ class Cards extends React.Component {
       })
       .then((res) => {
         console.log(res);
-        window.location.reload();
-        // let arr = this.state.tutorials;
-        // console.log(arr);
-        // let result = arr.filter((ele) => ele.name !== t.name);
-        // this.setState({ tutorials: result });
+
+        let arr = this.state.tutorials;
+        console.log(arr);
+        let result = arr.filter((ele) => ele.name !== tutorial.tName);
+        this.setState({ tutorials: result });
       })
       .catch((err) => {
         console.log(err);
       });
+      alert("Ddeleted Successfully")
+    window.location.reload();
   };
   render() {
     return (
@@ -69,23 +84,33 @@ class Cards extends React.Component {
                     <FontAwesomeIcon icon={faEdit} /> Edit
                   </Button>
                 </Link>{" "}
-                <Button
-                  id="delBtn"
-                  variant="danger"
-                  onClick={() => {
-                    this.deleteList(tutorial);
-                  }}
-                >
-                  {/* <Button
-                  id="delBtn"
-                  variant="danger"
-                  onClick={() => {
-                    this.deleteList(tutorial);
-                  }}
-                ></Button> */}
+                <Button id="delBtn" variant="danger"  onClick={() => {
+                        this.deleteList(tutorial);
+                      }}>
                   <FontAwesomeIcon icon={faTrash} /> Delete
                 </Button>
               </Card.Footer>
+              {/* <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Delete</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={this.handleClose}>
+                      Close
+                    </Button>
+                    <Button
+                    
+                      onClick={() => {
+                        this.deleteList(tutorial);
+                      }}
+                      variant="primary"
+                    >
+                      Delete
+                    </Button>
+                  </Modal.Footer>
+                </Modal.Body>
+              </Modal> */}
             </Card>
           ))}
         </Row>
