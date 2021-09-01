@@ -55,7 +55,7 @@ app.get("/tutorial", (req, res) => {
 
 app.get("/tutorial/:id", (req, res) => {
   const tutorialId = req.params.id;
-  console.log("tutorialId", tutorialId);
+  // console.log("tutorialId", tutorialId);
   Tutorial.findById(tutorialId)
     .then((data) => {
       res.end(JSON.stringify(data));
@@ -64,8 +64,9 @@ app.get("/tutorial/:id", (req, res) => {
 });
 
 // update tutorial
-app.put("/tutorial/:id", urlencodedParser, (req, res) => {
+app.put("/tutorial/:id", (req, res) => {
   const tutorialId = req.params.id;
+  console.log("tutorialId", tutorialId);
   Tutorial.findByIdAndUpdate(
     { _id: tutorialId },
     {

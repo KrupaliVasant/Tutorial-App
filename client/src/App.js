@@ -126,7 +126,11 @@ function App() {
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/addtutorial" component={AddTutorial}></Route>
-          <Route exact path="/edittutorial" component={EditTutorial}></Route>
+          <Route
+            exact
+            path="/edittutorial/:id"
+            component={EditTutorial}
+          ></Route>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />

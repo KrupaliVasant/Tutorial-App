@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function EditTutorial(props) {
   const url = "http://localhost:8080/tutorial";
@@ -8,6 +8,7 @@ function EditTutorial(props) {
   const [tName, setTname] = useState();
   const [tDesc, setTdesc] = useState();
   const [tStatus, setTstatus] = useState();
+  const history = useHistory();
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
@@ -44,7 +45,7 @@ function EditTutorial(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let id = props.match.parama.id;
+    let id = props.match.params.id;
     console.log("update clicked", id);
     axios
       .put(url + "/" + id, {
@@ -55,6 +56,8 @@ function EditTutorial(props) {
       })
       .then((res) => {
         alert("Update Tutorial");
+        console.log("Updated");
+        history.push("/home");
       });
   };
 
