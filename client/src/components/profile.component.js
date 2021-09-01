@@ -1,13 +1,9 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import AuthService from "../services/auth.service";
+import React from "react";
 
-function Profile (props)  {
-
-    return (
-      <div className="container">
-        
-        <div>
+function Profile(props) {
+  return (
+    <div className="container">
+      <div>
         <header className="jumbotron">
           <h3>
             <strong>Kumar</strong> Profile
@@ -17,19 +13,15 @@ function Profile (props)  {
           <strong>Token:</strong>{" "}
         </p>
         <p>
-          <strong>Id:</strong>{" "}
-         203323
+          <strong>Id:</strong> 203323
         </p>
         <p>
-          <strong>Email:</strong>{" "}
-          kumar.s7943@gmail.com
+          <strong>Email:</strong> kumar.s7943@gmail.com
         </p>
         <strong>Authorities:</strong>
-        <ul>
-          
-        </ul>
+        <ul></ul>
       </div>
-      </div>
-    );
-  }
+    </div>
+  );
+}
 export default Profile;
