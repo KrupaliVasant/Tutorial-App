@@ -45,7 +45,7 @@ function Login(props) {
        password: state.password,
     };
 
-    Axios.post("/api/users/login", userData)
+    Axios.post("http://localhost:8080/api/users/login", userData)
        .then(res => {
           const { token } = res.data;
           localStorage.setItem("jwtToken", token);
