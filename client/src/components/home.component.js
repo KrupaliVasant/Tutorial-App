@@ -36,10 +36,11 @@ class Cards extends React.Component {
       })
       .then((res) => {
         console.log(res);
-        let arr = this.state.tutorials;
-        console.log(arr);
-        let result = arr.filter((ele) => ele._id !== t._id);
-        this.setState({ tutorials: result });
+        window.location.reload();
+        // let arr = this.state.tutorials;
+        // console.log(arr);
+        // let result = arr.filter((ele) => ele.name !== t.name);
+        // this.setState({ tutorials: result });
       })
       .catch((err) => {
         console.log(err);

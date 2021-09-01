@@ -10,8 +10,9 @@ export default class Viewmore extends React.Component {
     super({ location });
     this.state = {
       id: [],
-      tutorials: [],
+      players: [],
       value: "",
+      tutorials: [],
     };
   }
 
