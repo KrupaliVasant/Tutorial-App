@@ -5,7 +5,10 @@ import "./App.css";
 
 import AuthService from "./services/auth.service";
 
+import PrivateRoute from "./components/PrivateRoute";
+import Landing from "./components/Landing.component";
 import Login from "./components/login.component";
+import Navbar from "./components/navbar.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import AddTutorial from "./components/addtutorial";
@@ -13,121 +16,53 @@ import Profile from "./components/profile.component";
 
 // import AuthVerify from "./common/auth-verify";
 
-import EditTutorial from "./components/edittutorial";
+import jwt_decode from "jwt-decode";
+import { useDispatch } from "react-redux";
+import setAuthToken from "./redux/utils/setAuthToken";
+import {
+   logoutUser,
+   setCurrentUser,
+   setLoggedIn,
+} from "./redux/actions/authActions";
 
-function App() {
-  // constructor(props) {
-  //   super(props);
-  //   this.logOut = this.logOut.bind(this);
+// import AuthVerify from "./common/auth-verify";
 
-  //   this.state = {
-  //     showModeratorBoard: false,
-  //     showAdminBoard: false,
-  //     currentUser: undefined,
-  //   };
-  // }
+import EditTutorial from "./components/edittutorial.component";
 
-  // componentDidMount() {
-  //   const user = AuthService.getCurrentUser();
+const App = () => {
+  
+  if (localStorage.jwtToken) {
+    const token = localStorage.jwtToken;
+    setAuthToken(token);
 
-  //   if (user) {
-  //     this.setState({
-  //       currentUser: user,
-  //       showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-  //       showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-  //     });
-  //   }
+    const decoded = jwt_decode(token);
+    const dispatch = useDispatch();
 
-  //   EventBus.on("logout", () => {
-  //     this.logOut();
-  //   });
-  // }
+    dispatch(setCurrentUser(decoded));
+    dispatch(setLoggedIn(true));
 
-  // componentWillUnmount() {
-  //   EventBus.remove("logout");
-  // }
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+       dispatch(logoutUser());
+       dispatch(setLoggedIn(false));
 
-  // logOut() {
-  //   AuthService.logout();
-  //   this.setState({
-  //     showModeratorBoard: false,
-  //     showAdminBoard: false,
-  //     currentUser: undefined,
-  //   });
-  // }
-
-  // render() {
-  //   const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+       window.location.href = "/login";
+    }
+ }
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          Brillio
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/addtutorial"} className="nav-link">
-              Add Tutorial
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/edittutorial"} className="nav-link">
-              Edit Tutorial
-            </Link>
-          </li>
-
-          {/* {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
-                </Link>
-              </li>
-            )} */}
-        </div>
-
-        {/* {currentUser ? ( */}
-        {/* <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div> */}
-        {/* ) : ( */}
-        <div className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link to={"/login"} className="nav-link">
-              Login
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link to={"/register"} className="nav-link">
-              Sign Up
-            </Link>
-          </li>
-        </div>
-        {/* )} */}
-      </nav>
-
+       <Navbar />
+       <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
       <div className="container mt-3">
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/addtutorial" component={AddTutorial}></Route>
           <Route exact path="/edittutorial" component={EditTutorial}></Route>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
+          {/* <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} /> */}
           <Route exact path="/profile" component={Profile} />
         </Switch>
       </div>
