@@ -26,7 +26,7 @@ function Login(props) {
        password: "",
     });
     if (isAuth) {
-       props.history.push("/dashboard");
+       props.history.push("/home");
        dispatch(setLoggedIn(true));
     }
  }, [isAuth]);
