@@ -47,7 +47,7 @@ const Register = (props) => {
       password2: state.password2,
     };
 
-    Axios.post("/api/users/register", newUser)
+    Axios.post("http://localhost:8080/api/users/register", newUser)
       .then((res) => {
         props.history.push("/login");
       })

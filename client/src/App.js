@@ -11,7 +11,7 @@ import Login from "./components/login.component";
 import Navbar from "./components/navbar.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
-import AddTutorial from "./components/addtutorial";
+import AddTutorial from "./components/addtutorial.component";
 import Profile from "./components/profile.component";
 import Viewmore from "./components/viewmore.component";
 
@@ -28,7 +28,7 @@ import {
 
 // import AuthVerify from "./common/auth-verify";
 
-import EditTutorial from "./components/edittutorial";
+import EditTutorial from "./components/edittutorial.component";
 
 const App = () => {
   const dispatch = useDispatch();
