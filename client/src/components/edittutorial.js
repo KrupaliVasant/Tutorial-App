@@ -32,11 +32,13 @@ function EditTutorial(props) {
     // const tid = document.getElementById("tutorial_id").value;
     const tname = document.getElementById("tutorial_name").value;
     const tdesc = document.getElementById("tutorial_desc").value;
-    const tstatus = document.getElementById("tutorial_status").value;
+    const tstatus = document.getElementById("tutorial_status");
+    const tstatusV = tstatus.options[tstatus.selectedIndex].value;
+    console.log(tstatusV);
     // setTid(tid);
     setTname(tname);
     setTdesc(tdesc);
-    setTstatus(tstatus);
+    setTstatus(tstatusV);
   };
 
   const handleSubmit = (e) => {
@@ -102,13 +104,13 @@ function EditTutorial(props) {
             </div>
             <div className="form-group">
               <label htmlFor="tutorial_status">Status</label>
-              <select id="tutorial_status" className="form-select form-control">
-                <option value={tStatus} onChange={handleChange}>
-                  Published
-                </option>
-                <option value={tStatus} onChange={handleChange}>
-                  UnPublished
-                </option>
+              <select
+                id="tutorial_status"
+                className="form-select form-control"
+                onChange={handleChange}
+              >
+                <option value="Published">Published</option>
+                <option value="UnPublished">UnPublished</option>
               </select>
             </div>
 
