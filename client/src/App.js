@@ -13,6 +13,7 @@ import Register from "./components/register.component";
 import Home from "./components/home.component";
 import AddTutorial from "./components/addtutorial";
 import Profile from "./components/profile.component";
+import Viewmore from "./components/viewmore.component";
 
 // import AuthVerify from "./common/auth-verify";
 
@@ -63,7 +64,15 @@ const App = () => {
           <Route exact path="/edittutorial" component={EditTutorial}></Route>
           {/* <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} /> */}
+          <Route
+            exact
+            path="/edittutorial/:id"
+            component={EditTutorial}
+          ></Route>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/viewmore/:id" component={Viewmore} />
         </Switch>
       </div>
 

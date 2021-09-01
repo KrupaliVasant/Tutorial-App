@@ -55,7 +55,7 @@ app.get("/tutorial", (req, res) => {
 
 app.get("/tutorial/:id", (req, res) => {
   const tutorialId = req.params.id;
-  console.log("tutorialId", tutorialId);
+  // console.log("tutorialId", tutorialId);
   Tutorial.findById(tutorialId)
     .then((data) => {
       res.end(JSON.stringify(data));
@@ -64,8 +64,9 @@ app.get("/tutorial/:id", (req, res) => {
 });
 
 // update tutorial
-app.put("/tutorial/:id", urlencodedParser, (req, res) => {
+app.put("/tutorial/:id", (req, res) => {
   const tutorialId = req.params.id;
+  console.log("tutorialId", tutorialId);
   Tutorial.findByIdAndUpdate(
     { _id: tutorialId },
     {
@@ -79,6 +80,29 @@ app.put("/tutorial/:id", urlencodedParser, (req, res) => {
   )
     .then((data) => {
       console.log("Updtaed");
+      console.log("data===", JSON.stringify(data));
+      res.end(JSON.stringify(data));
+    })
+    .catch((err) => console.log(err));
+});
+
+//Delete tutorial
+app.delete("/tutorial/:id", (req, res) => {
+  const tutorialId = req.params.id;
+  console.log("tutorialId", tutorialId);
+  Tutorial.findOneAndDelete(
+    { _id: tutorialId },
+    {
+      $set: {
+        tId: req.body.tId,
+        tName: req.body.tName,
+        tDesc: req.body.tDesc,
+        tStatus: req.body.tStatus,
+      },
+    }
+  )
+    .then((data) => {
+      console.log("Deleted");
       console.log("data===", JSON.stringify(data));
       res.end(JSON.stringify(data));
     })

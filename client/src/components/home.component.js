@@ -16,28 +16,31 @@ class Cards extends React.Component {
     this.state = {
       id: [],
       showComponent: false,
-      players: [],
+      tutorials: [],
     };
   }
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users/`).then((res) => {
-      this.setState({ players: res.data });
-      console.log(res);
-      console.log(res.data);
+    axios.get(`http://localhost:8080/tutorial`).then((res) => {
+      this.setState({ tutorials: res.data });
+      // console.log(res);
+      // console.log(res.data);
     });
   }
 
-  deleteList = (player) => {
-    const user = { id: player.id, name: player.name };
+  deleteList = (t) => {
+    const tut = { id: t._id, name: t.tName };
+    console.log(tut);
     axios
-      .delete(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
-        data: user,
+      .delete(`http://localhost:8080/tutorial/${tut.id}`, {
+        data: tut,
       })
       .then((res) => {
         console.log(res);
-        let arr = this.state.players;
-        let result = arr.filter((ele) => ele.name !== player.name);
-        this.setState({ players: result });
+        window.location.reload();
+        // let arr = this.state.tutorials;
+        // console.log(arr);
+        // let result = arr.filter((ele) => ele.name !== t.name);
+        // this.setState({ tutorials: result });
       })
       .catch((err) => {
         console.log(err);
@@ -46,28 +49,31 @@ class Cards extends React.Component {
   render() {
     return (
       <>
-        <Row xs={1} md={2} className="g-4">
-          {this.state.players.map((player, index) => (
+        <Row xs={1} md={2}>
+          {/* {tutorials.tName} */}
+          {this.state.tutorials.map((tutorial, index) => (
             <Card>
-              <Card.Header>{player.id}</Card.Header>
+              <Card.Header>{tutorial.tName}</Card.Header>
               <Card.Body>
-                <Card.Title>{player.name}</Card.Title>
-                <Card.Text>{player.username}</Card.Text>
+                <Card.Title>{tutorial.tDesc}</Card.Title>
+                <Card.Text>{tutorial.tStatus}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/viewmore/${player.id}`}>
+                <Link to={`/viewmore/${tutorial._id}`}>
                   <Button variant="dark">
                     <FontAwesomeIcon icon={faInfoCircle} /> View more
                   </Button>
                 </Link>{" "}
-                <Button id="delBtn" variant="primary" href="#">
-                  <FontAwesomeIcon icon={faEdit} /> Edit
-                </Button>{" "}
+                <Link to={`/edittutorial/${tutorial._id}`}>
+                  <Button id="delBtn" variant="primary">
+                    <FontAwesomeIcon icon={faEdit} /> Edit
+                  </Button>
+                </Link>{" "}
                 <Button
                   id="delBtn"
                   variant="danger"
                   onClick={() => {
-                    this.deleteList(player);
+                    this.deleteList(tutorial);
                   }}
                 >
                   <FontAwesomeIcon icon={faTrash} /> Delete
