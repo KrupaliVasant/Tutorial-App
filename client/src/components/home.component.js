@@ -76,6 +76,13 @@ class Cards extends React.Component {
                     this.deleteList(tutorial);
                   }}
                 >
+                  {/* <Button
+                  id="delBtn"
+                  variant="danger"
+                  onClick={() => {
+                    this.deleteList(tutorial);
+                  }}
+                ></Button> */}
                   <FontAwesomeIcon icon={faTrash} /> Delete
                 </Button>
               </Card.Footer>
