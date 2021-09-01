@@ -8,8 +8,8 @@ import {
   faInfoCircle,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { Card, Button, CardGroup, Row } from "react-bootstrap";
-import { withRouter, Link } from "react-router-dom";
+import { Card, Button, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 class Cards extends React.Component {
   constructor() {
     super();

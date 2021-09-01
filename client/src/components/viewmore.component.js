@@ -1,9 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "font-awesome/css/font-awesome.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Card, Button, CardGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 export default class Viewmore extends React.Component {
   constructor({ location }) {

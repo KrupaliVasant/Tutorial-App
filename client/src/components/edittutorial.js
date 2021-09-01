@@ -1,18 +1,14 @@
 import axios from "axios";
-import React, { Component, useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 function EditTutorial(props) {
   const url = "http://localhost:8080/tutorial";
-  const [tId, setTid] = useState();
+  // const [tId, setTid] = useState();
   const [tName, setTname] = useState();
   const [tDesc, setTdesc] = useState();
   const [tStatus, setTstatus] = useState();
   const history = useHistory();
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json",
-  };
 
   const loadData = () => {
     let id = props.match.params.id;
@@ -20,7 +16,7 @@ function EditTutorial(props) {
     axios.get(url + "/" + id).then((res) => {
       let tutorial = res.data;
       console.log(tutorial);
-      setTid(tutorial.id);
+      // setTid(tutorial.id);
       setTname(tutorial.tName);
       setTdesc(tutorial.tDesc);
       setTstatus(tutorial.tStatus);
