@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function AddTutorial(props) {
   const url = "http://localhost:8080/tutorial";
@@ -7,6 +8,7 @@ function AddTutorial(props) {
   const [tName, setTname] = useState();
   const [tDesc, setTdesc] = useState();
   const [tStatus, setTstatus] = useState();
+  const history = useHistory();
 
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -29,6 +31,7 @@ function AddTutorial(props) {
       )
       .then((res) => {
         alert("Add Tutorial");
+        history.push("/home");
       });
   };
 
