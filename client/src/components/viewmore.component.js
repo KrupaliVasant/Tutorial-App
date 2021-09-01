@@ -34,14 +34,15 @@ export default class Viewmore extends React.Component {
               <Card.Title>{this.state.tutorial?.tDesc}</Card.Title>
               <Card.Text>{this.state.tutorial?.tStatus}</Card.Text>
             </Card.Body>
+            <Card.Footer>
+              <Link to={`/home`}>
+                <Button variant="dark">
+                  <FontAwesomeIcon icon={faBackward} /> Go Back
+                </Button>
+              </Link>
+            </Card.Footer>
           </Card>
         }
-
-        {/* <footer class="footer mt-auto py-3">
-          <div class="container">
-            <span class="text-muted">lorem</span>
-          </div>
-        </footer> */}
       </>
     );
   }
