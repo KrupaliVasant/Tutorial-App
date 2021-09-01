@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -21,72 +21,71 @@ import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import setAuthToken from "./redux/utils/setAuthToken";
 import {
-   logoutUser,
-   setCurrentUser,
-   setLoggedIn,
+  logoutUser,
+  setCurrentUser,
+  setLoggedIn,
 } from "./redux/actions/authActions";
 
 // import AuthVerify from "./common/auth-verify";
 
-import EditTutorial from "./components/edittutorial.component";
+import EditTutorial from "./components/edittutorial";
 
 const App = () => {
-  
+  const dispatch = useDispatch();
   if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
     setAuthToken(token);
 
     const decoded = jwt_decode(token);
-    const dispatch = useDispatch();
 
     dispatch(setCurrentUser(decoded));
     dispatch(setLoggedIn(true));
 
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
-       dispatch(logoutUser());
-       dispatch(setLoggedIn(false));
+      dispatch(logoutUser());
+      dispatch(setLoggedIn(false));
 
-       window.location.href = "/login";
+      window.location.href = "/login";
     }
- }
+  }
 
   return (
     <div>
-       <Navbar />
-       <Route exact path="/" component={Landing} />
+      <BrowserRouter>
+        <Navbar />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <div className="container mt-3">
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/addtutorial" component={AddTutorial}></Route>
+            <Route exact path="/edittutorial" component={EditTutorial}></Route>
+            {/* <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} /> */}
+            <Route
+              exact
+              path="/edittutorial/:id"
+              component={EditTutorial}
+            ></Route>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
-      <div className="container mt-3">
-        <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/addtutorial" component={AddTutorial}></Route>
-          <Route exact path="/edittutorial" component={EditTutorial}></Route>
-          {/* <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} /> */}
-          <Route
-            exact
-            path="/edittutorial/:id"
-            component={EditTutorial}
-          ></Route>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/viewmore/:id" component={Viewmore} />
-        </Switch>
-      </div>
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/viewmore/:id" component={Viewmore} />
+          </Switch>
+        </div>
+      </BrowserRouter>
       <footer class="footer fixed-bottom bg-dark text-center text-white ">
         <div class="container p-2">
-            <section class="my-2">
-            <p>
-            @2021 Tutuorials. All Rights Reserved
-            </p>
+          <section class="my-2">
+            <p>@2021 Tutuorials. All Rights Reserved</p>
           </section>
         </div>
       </footer>
       {/*<AuthVerify logOut={this.logOut}/> */}
     </div>
   );
-}
+};
 
 export default App;

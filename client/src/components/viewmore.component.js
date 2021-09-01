@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
 import "font-awesome/css/font-awesome.min.css";
-import { Card } from "react-bootstrap";
+import "font-awesome/css/font-awesome.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { Card, Button, Row } from "react-bootstrap";
+import { faBackward } from "@fortawesome/free-solid-svg-icons";
 
 export default class Viewmore extends React.Component {
   constructor({ location }) {
