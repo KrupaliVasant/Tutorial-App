@@ -46,7 +46,7 @@ class Cards extends React.Component {
   render() {
     return (
       <>
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={2} >
           {this.state.players.map((player, index) => (
             <Card>
               <Card.Header>{player.id}</Card.Header>
@@ -60,9 +60,11 @@ class Cards extends React.Component {
                     <FontAwesomeIcon icon={faInfoCircle} /> View more
                   </Button>
                 </Link>{" "}
-                <Button id="delBtn" variant="primary" href="#">
-                  <FontAwesomeIcon icon={faEdit} /> Edit
-                </Button>{" "}
+                <Link to={`/edittutorial`}>
+                  <Button id="delBtn" variant="primary">
+                    <FontAwesomeIcon icon={faEdit} /> Edit
+                  </Button>
+                </Link>{" "}
                 <Button
                   id="delBtn"
                   variant="danger"
