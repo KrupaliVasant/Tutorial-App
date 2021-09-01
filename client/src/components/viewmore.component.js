@@ -10,7 +10,7 @@ export default class Viewmore extends React.Component {
     super({ location });
     this.state = {
       id: [],
-      players: [],
+      tutorials: [],
       value: "",
     };
   }
@@ -18,13 +18,11 @@ export default class Viewmore extends React.Component {
   componentDidMount() {
     let path = window.location.pathname.split("/")[2];
     console.log(path);
-    axios
-      .get(`https://jsonplaceholder.typicode.com/users/${path}`)
-      .then((res) => {
-        this.setState({ player: res.data });
-        console.log(res);
-        console.log(res.data);
-      });
+    axios.get(`http://localhost:8080/tutorial/${path}`).then((res) => {
+      this.setState({ tutorial: res.data });
+      console.log(res);
+      console.log(res.data);
+    });
   }
 
   render() {
@@ -32,10 +30,10 @@ export default class Viewmore extends React.Component {
       <>
         {
           <Card>
-            <Card.Header>{this.state.player?.id}</Card.Header>
+            <Card.Header>{this.state.tutorial?.tName}</Card.Header>
             <Card.Body>
-              <Card.Title>{this.state.player?.name}</Card.Title>
-              <Card.Text>{this.state.player?.username}</Card.Text>
+              <Card.Title>{this.state.tutorial?.tDesc}</Card.Title>
+              <Card.Text>{this.state.tutorial?.tStatus}</Card.Text>
             </Card.Body>
           </Card>
         }
