@@ -39,11 +39,6 @@ export default class Viewmore extends React.Component {
           </Card>
         }
 
-        {/* <footer class="footer mt-auto py-3">
-          <div class="container">
-            <span class="text-muted">lorem</span>
-          </div>
-        </footer> */}
       </>
     );
   }

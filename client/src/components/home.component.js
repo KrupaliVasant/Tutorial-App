@@ -89,66 +89,6 @@ class Cards extends React.Component {
             </Card>
           ))}
         </Row>
-        {/* <CardGroup>
-          <Card>
-            <Card.Header>HTML</Card.Header>
-            <Card.Body>
-              <Card.Title>Intoduction to HTML</Card.Title>
-              <Card.Text>
-                HTML is the standard markup language for Web pages{" "}
-                <a href="#">view more...</a>
-              </Card.Text>
-            
-            </Card.Body>
-            <Card.Footer>
-              <Button className="float-right" variant="danger">
-                Delete
-              </Button>
-              <Button className="float-right" variant="primary">
-                View more
-              </Button>
-            </Card.Footer>
-          </Card>
-          <Card>
-            <Card.Header>CSS</Card.Header>
-            <Card.Body>
-              <Card.Title>Intoduction to CSS</Card.Title>
-              <Card.Text>
-                CSS is the language we use to style an HTML document. CSS
-                describes how HTML elements should be displayed.
-              </Card.Text>
-              <a href="#">more</a>
-            </Card.Body>
-            <Card.Footer>
-              <Button className="float-right" variant="danger">
-                Delete
-              </Button>
-              <Button className="float-right" variant="primary">
-                Edit
-              </Button>
-            </Card.Footer>
-          </Card>
-          <Card>
-            <Card.Header>Javascript</Card.Header>
-            <Card.Body>
-              <Card.Title>Introduction to JavaScript</Card.Title>
-              <Card.Text>
-                JavaScript is the world's most popular programming language.
-                JavaScript is the programming language of the Web. JavaScript is
-                easy to learn.
-              </Card.Text>
-              <a href="#">more</a>
-            </Card.Body>
-            <Card.Footer>
-              <Button className="float-right" variant="danger">
-                Delete
-              </Button>
-              <Button className="float-right" variant="primary">
-                Edit
-              </Button>
-            </Card.Footer>
-          </Card>
-        </CardGroup> */}
       </>
     );
   }

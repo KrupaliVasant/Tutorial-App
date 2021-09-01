@@ -75,7 +75,15 @@ const App = () => {
           <Route exact path="/viewmore/:id" component={Viewmore} />
         </Switch>
       </div>
-
+      <footer class="footer fixed-bottom bg-dark text-center text-white ">
+        <div class="container p-2">
+            <section class="my-2">
+            <p>
+            @2021 Tutuorials. All Rights Reserved
+            </p>
+          </section>
+        </div>
+      </footer>
       {/*<AuthVerify logOut={this.logOut}/> */}
     </div>
   );
