@@ -86,5 +86,28 @@ app.put("/tutorial/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+//Delete tutorial
+app.delete("/tutorial/:id", (req, res) => {
+  const tutorialId = req.params.id;
+  console.log("tutorialId", tutorialId);
+  Tutorial.findOneAndDelete(
+    { _id: tutorialId },
+    {
+      $set: {
+        tId: req.body.tId,
+        tName: req.body.tName,
+        tDesc: req.body.tDesc,
+        tStatus: req.body.tStatus,
+      },
+    }
+  )
+    .then((data) => {
+      console.log("Deleted");
+      console.log("data===", JSON.stringify(data));
+      res.end(JSON.stringify(data));
+    })
+    .catch((err) => console.log(err));
+});
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`listening on port: ${port}`));
