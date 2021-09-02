@@ -30,7 +30,7 @@ function AddTutorial(props) {
         { headers: headers }
       )
       .then((res) => {
-        alert("Add Tutorial");
+        // alert("Add Tutorial");
         history.push("/home");
       });
   };
@@ -47,6 +47,10 @@ function AddTutorial(props) {
     setTname(tname);
     setTdesc(tdesc);
     setTstatus(tstatusV);
+  };
+
+  const handleCancel = () => {
+    history.push("/home");
   };
 
   return (
@@ -103,9 +107,16 @@ function AddTutorial(props) {
               </select>
             </div>
 
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block">
+            <div className="form-group d-flex justify-content-around">
+              <button type="submit" className="btn btn-primary">
                 Add
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning"
+                onClick={handleCancel}
+              >
+                Cancel
               </button>
             </div>
           </form>

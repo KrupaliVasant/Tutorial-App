@@ -53,10 +53,14 @@ function EditTutorial(props) {
         tStatus: tStatus,
       })
       .then((res) => {
-        alert("Update Tutorial");
+        // alert("Update Tutorial");
         console.log("Updated");
         history.push("/home");
       });
+  };
+
+  const handleCancel = () => {
+    history.push("/home");
   };
 
   return (
@@ -114,9 +118,16 @@ function EditTutorial(props) {
               </select>
             </div>
 
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block">
+            <div className="form-group d-flex justify-content-around">
+              <button type="submit" className="btn btn-primary">
                 Update
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning"
+                onClick={handleCancel}
+              >
+                Cancel
               </button>
             </div>
           </form>
