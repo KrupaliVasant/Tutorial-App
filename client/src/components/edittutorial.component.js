@@ -124,7 +124,7 @@ function EditTutorial(props) {
               </button>
               <button
                 type="button"
-                className="btn btn-warning"
+                className="btn btn-secondary"
                 onClick={handleCancel}
               >
                 Cancel
