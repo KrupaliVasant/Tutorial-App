@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import "toastify-js/src/toastify.css";
 
 import AuthService from "./services/auth.service";
 

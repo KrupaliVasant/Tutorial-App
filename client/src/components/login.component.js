@@ -6,6 +6,7 @@ import { loginUser, setLoggedIn } from "../redux/actions/authActions";
 import Axios from "axios";
 import setAuthToken from "../redux/utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import Toastify from 'toastify-js';
 
 
 function Login(props) {
@@ -26,6 +27,16 @@ function Login(props) {
        password: "",
     });
     if (isAuth) {
+      Toastify({
+        text: "Logged in succesfully", 
+        duration: 2000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        stopOnFocus: true, // Prevents dismissing of toast on hover 
+        onClick: function(){}
+        }).showToast()
        props.history.push("/home");
        dispatch(setLoggedIn(true));
     }
@@ -72,7 +83,7 @@ function Login(props) {
 
           <Form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Email</label>
               <Input
                className="form-control"
                 onChange={handleChange}
