@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import ModalDialog from "react-bootstrap/ModalDialog";
-
+import SweetAlert from "sweetalert-react";
+import swal from "sweetalert";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalTitle from "react-bootstrap/ModalTitle";
 import ModalBody from "react-bootstrap/ModalBody";
@@ -30,8 +31,6 @@ class Cards extends React.Component {
   componentDidMount() {
     axios.get(`http://localhost:8080/tutorial`).then((res) => {
       this.setState({ tutorials: res.data });
-      // console.log(res);
-      // console.log(res.data);
     });
   }
   handleClose = () => {
@@ -41,37 +40,52 @@ class Cards extends React.Component {
   handleShow = () => {
     this.setState({ show: true });
   };
-  deleteList = (tutorial) => {
-    const tut = { id: tutorial._id, name: tutorial.tName };
-    console.log(tut);
-    axios
-      .delete(`http://localhost:8080/tutorial/${tut.id}`, {
-        data: tut,
-      })
-      .then((res) => {
-        console.log(res);
 
-        let arr = this.state.tutorials;
-        console.log(arr);
-        let result = arr.filter((ele) => ele.name !== tutorial.tName);
-        this.setState({ tutorials: result });
+  deleteList = (tutorial) => {
+    swal({
+      text: "Are you sure you want to delete",
+      buttons: ["No", "Yes"],
+      icon: "error",
+    })
+      .then((willSearch) => {
+        if (willSearch) {
+          const tut = { id: tutorial._id, name: tutorial.tName };
+          console.log(tut);
+          axios
+            .delete(`http://localhost:8080/tutorial/${tut.id}`, {
+              data: tut,
+            })
+            .then((res) => {
+              console.log(res);
+
+              let arr = this.state.tutorials;
+              console.log(arr);
+              let result = arr.filter((ele) => ele.name !== tutorial.tName);
+              this.setState({ tutorials: result });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       })
+      .then((result) => result.json())
+      .then((json) => console.log(json))
       .catch((err) => {
-        console.log(err);
+        window.location.reload();
       });
-      alert("Ddeleted Successfully")
-    window.location.reload();
   };
   render() {
     return (
       <>
+        
         <Row xs={1} md={2}>
           {/* {tutorials.tName} */}
           {this.state.tutorials.map((tutorial, index) => (
-            <Card>
+            
+            <Card border="dark" style={{ borderRadius: 8 }}>
               <Card.Header>{tutorial.tName}</Card.Header>
               <Card.Body>
-                <Card.Title>{tutorial.tDesc}</Card.Title>
+                {/* <Card.Title>{tutorial.tDesc}</Card.Title> */}
                 <Card.Text>{tutorial.tStatus}</Card.Text>
               </Card.Body>
               <Card.Footer>
@@ -85,33 +99,16 @@ class Cards extends React.Component {
                     <FontAwesomeIcon icon={faEdit} /> Edit
                   </Button>
                 </Link>{" "}
-                <Button id="delBtn" variant="danger"  onClick={() => {
-                        this.deleteList(tutorial);
-                      }}>
+                <Button
+                  id="delBtn"
+                  variant="danger"
+                  onClick={() => {
+                    this.deleteList(tutorial);
+                  }}
+                >
                   <FontAwesomeIcon icon={faTrash} /> Delete
                 </Button>
               </Card.Footer>
-              {/* <Modal show={this.state.show} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Delete</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={this.handleClose}>
-                      Close
-                    </Button>
-                    <Button
-                    
-                      onClick={() => {
-                        this.deleteList(tutorial);
-                      }}
-                      variant="primary"
-                    >
-                      Delete
-                    </Button>
-                  </Modal.Footer>
-                </Modal.Body>
-              </Modal> */}
             </Card>
           ))}
         </Row>
