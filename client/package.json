@@ -38,6 +38,7 @@
     "sass-loader": "^8.0.0",
     "serialize-javascript": "^2.1.2",
     "sweetalert": "^2.1.2",
+    "sweetalert-react": "^0.4.11",
     "terser-webpack-plugin": "^2.1.0",
     "toastify-js": "^1.11.1",
     "url-loader": "^2.1.0",
