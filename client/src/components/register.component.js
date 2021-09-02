@@ -81,6 +81,7 @@ const Register = (props) => {
                 value={state.name}
                 name="name"
                 id="name"
+                placeholder="username"
               />
               <p className="input-error">{errors.name}</p>
             </div>

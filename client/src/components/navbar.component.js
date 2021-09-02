@@ -16,9 +16,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <Link to={"/"} className="navbar-brand">
+       <Link to={"/"} className="navbar-brand">
         Brillio
       </Link>
+      {isLoggedIn ? (
+        <>
       <div className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link to={"/home"} className="nav-link">
@@ -36,11 +38,10 @@ const Navbar = () => {
           </Link>
         </li>
       </div>
-
-      {isLoggedIn ? (
-        <button className="button" onClick={handleLogout}>
+        <button className="btn btn-primary" onClick={handleLogout}>
           Logout
         </button>
+        </>
       ) : (
         <React.Fragment>
           <div className="navbar-nav ml-auto">

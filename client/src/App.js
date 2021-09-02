@@ -59,20 +59,20 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/addtutorial" component={AddTutorial}></Route>
-            <Route exact path="/edittutorial" component={EditTutorial}></Route>
+            <PrivateRoute exact path={["/", "/home"]} component={Home} />
+            <PrivateRoute exact path="/addtutorial" component={AddTutorial}></PrivateRoute>
+            <PrivateRoute exact path="/edittutorial" component={EditTutorial}></PrivateRoute>
             {/* <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} /> */}
-            <Route
+            <PrivateRoute
               exact
               path="/edittutorial/:id"
               component={EditTutorial}
-            ></Route>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/viewmore/:id" component={Viewmore} />
+            ></PrivateRoute>
+            {/* <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} /> */}
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/viewmore/:id" component={Viewmore} />
           </Switch>
         </div>
       </BrowserRouter>
