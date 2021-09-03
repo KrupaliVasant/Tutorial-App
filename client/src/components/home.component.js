@@ -78,6 +78,7 @@ class Cards extends React.Component {
     return (
       <>
         <Row xs={1} md={2}>
+          {/* <p>{this.state.tutorials.length}</p> */}
           {/* {tutorials.tName} */}
           {this.state.tutorials.map((tutorial, index) => (
             <Card border="dark" style={{ borderRadius: 8 }}>
