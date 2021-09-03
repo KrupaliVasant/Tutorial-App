@@ -2,18 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useParams, useHistory } from "react-router-dom";
 import { logoutUser, setLoggedIn } from "../redux/actions/authActions";
-import LoginContext from "./contex/loginContex";
 
 const Navbar = () => {
-  const ctx = React.useContext(LoginContext);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.auth.loginUser);
-  const params = useParams();
-  console.log(params);
-  const loc = useLocation();
-  console.log(loc);
-  const user = loc.state;
   const history = useHistory();
 
   useEffect(() => {
@@ -48,7 +41,6 @@ const Navbar = () => {
               </Link>
             </li> */}
           </div>
-          <p className="me-3 mt-1 text-white mr-3">Welcome {user}</p>
           <button className="btn btn-primary" onClick={handleLogout}>
             Logout
           </button>
