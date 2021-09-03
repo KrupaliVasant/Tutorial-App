@@ -17,7 +17,7 @@ function Login(props) {
   const dispatch = useDispatch();
 
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  // const isLoggedIn = useSelector(state => state.auth.user);
+  // const isLoggedIn = useSelector((state) => state.auth.user.name);
 
   useEffect(() => {
     setState({
