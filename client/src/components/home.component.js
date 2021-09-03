@@ -77,11 +77,9 @@ class Cards extends React.Component {
   render() {
     return (
       <>
-        
         <Row xs={1} md={2}>
           {/* {tutorials.tName} */}
           {this.state.tutorials.map((tutorial, index) => (
-            
             <Card border="dark" style={{ borderRadius: 8 }}>
               <Card.Header>{tutorial.tName}</Card.Header>
               <Card.Body>

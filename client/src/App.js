@@ -30,6 +30,7 @@ import {
 // import AuthVerify from "./common/auth-verify";
 
 import EditTutorial from "./components/edittutorial.component";
+import PageNotFound from "./components/pagenotfound.component";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -61,8 +62,16 @@ const App = () => {
         <div className="container mt-3">
           <Switch>
             <PrivateRoute exact path={["/", "/home"]} component={Home} />
-            <PrivateRoute exact path="/addtutorial" component={AddTutorial}></PrivateRoute>
-            <PrivateRoute exact path="/edittutorial" component={EditTutorial}></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/addtutorial"
+              component={AddTutorial}
+            ></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/edittutorial"
+              component={EditTutorial}
+            ></PrivateRoute>
             {/* <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} /> */}
             <PrivateRoute
@@ -74,6 +83,7 @@ const App = () => {
             <Route exact path="/register" component={Register} /> */}
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/viewmore/:id" component={Viewmore} />
+            <PrivateRoute component={PageNotFound} />
           </Switch>
         </div>
       </BrowserRouter>

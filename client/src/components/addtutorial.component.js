@@ -81,6 +81,7 @@ function AddTutorial(props) {
                 value={tName}
                 onChange={handleChange}
                 placeholder="Tutorial Name"
+                required
               />
             </div>
             <div className="form-group">
@@ -93,6 +94,7 @@ function AddTutorial(props) {
                 value={tDesc}
                 onChange={handleChange}
                 placeholder="Tutorial Description"
+                required
               />
             </div>
             <div className="form-group">
