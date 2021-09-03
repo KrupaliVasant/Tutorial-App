@@ -42,11 +42,11 @@ const Navbar = () => {
                 Add Tutorial
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to={"/edittutorial"} className="nav-link">
                 Edit Tutorial
               </Link>
-            </li>
+            </li> */}
           </div>
           <p className="me-3 mt-1 text-white mr-3">Welcome {user}</p>
           <button className="btn btn-primary" onClick={handleLogout}>
