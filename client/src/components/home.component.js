@@ -83,7 +83,7 @@ class Cards extends React.Component {
             <Card border="dark" style={{ borderRadius: 8 }}>
               <Card.Header>{tutorial.tName}</Card.Header>
               <Card.Body>
-                <Card.Title>{tutorial.tDesc}</Card.Title>
+                {/* <Card.Title>{tutorial.tDesc}</Card.Title> */}
                 <Card.Text>{tutorial.tStatus}</Card.Text>
               </Card.Body>
               <Card.Footer>

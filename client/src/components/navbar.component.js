@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams, useHistory } from "react-router-dom";
 import { logoutUser, setLoggedIn } from "../redux/actions/authActions";
 import LoginContext from "./contex/loginContex";
 
 const Navbar = () => {
+  const ctx = React.useContext(LoginContext);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.auth.loginUser);
@@ -13,8 +14,11 @@ const Navbar = () => {
   const loc = useLocation();
   console.log(loc);
   const user = loc.state;
+  const history = useHistory();
 
-  useEffect(() => {}, [isLoggedIn]);
+  useEffect(() => {
+    console.log(history.location);
+  }, [isLoggedIn]);
   const handleLogout = () => {
     dispatch(logoutUser());
     dispatch(setLoggedIn(false));
