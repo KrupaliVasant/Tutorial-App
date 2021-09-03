@@ -17,11 +17,10 @@ function Login(props) {
   const dispatch = useDispatch();
 
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  // const isLoggedIn = useSelector(state => state.auth);
+  // const isLoggedIn = useSelector(state => state.auth.user);
 
   useEffect(() => {
     setState({
-      name: "",
       email: "",
       password: "",
     });
@@ -37,7 +36,6 @@ function Login(props) {
         onClick: function () {},
       }).showToast();
       props.history.push("/home");
-      // props.history.push({ pathname: "/home", state: state.email });
       dispatch(setLoggedIn(true));
     }
   }, [isAuth]);
@@ -52,7 +50,6 @@ function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
-      name: state.name,
       email: state.email,
       password: state.password,
     };
@@ -66,8 +63,6 @@ function Login(props) {
         const decoded = jwt_decode(token);
         dispatch(loginUser(decoded));
         dispatch(setLoggedIn(true));
-        props.history.push({ pathname: "/home", state: state.email });
-        console.log(props.history.location);
         dispatch(setLoggedIn(true));
       })
       .catch((err) => {
