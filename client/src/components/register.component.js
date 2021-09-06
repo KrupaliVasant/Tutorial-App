@@ -49,7 +49,7 @@ const Register = (props) => {
 
     Axios.post("http://localhost:8080/api/users/register", newUser)
       .then((res) => {
-        props.history.push("/login",);
+        props.history.push({ pathname: "/login", state: state.name});
       })
       .catch((err) => {
         // dispatch({
