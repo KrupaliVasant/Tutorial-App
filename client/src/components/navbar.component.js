@@ -8,6 +8,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.auth.loginUser);
   const history = useHistory();
+  const isLoggedIn1 = useSelector((state) => state.auth.user.name);
 
   useEffect(() => {
     console.log(history.location);
@@ -41,6 +42,7 @@ const Navbar = () => {
               </Link>
             </li> */}
           </div>
+          <p className="text-white mr-3 mt-2">Welcome {isLoggedIn1}</p>
           <button className="btn btn-primary" onClick={handleLogout}>
             Logout
           </button>
